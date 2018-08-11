@@ -1,0 +1,13 @@
+--- a/ofproto/ofproto.c	2016-02-28 03:59:31.000000000 +1100
++++ b/ofproto/ofproto.c	2018-07-22 13:08:24.000000000 +1000
+@@ -3508,8 +3508,8 @@ static enum ofperr
+ handle_desc_stats_request(struct ofconn *ofconn,
+                           const struct ofp_header *request)
+ {
+-    static const char *default_mfr_desc = "Nicira, Inc.";
+-    static const char *default_hw_desc = "Open vSwitch";
++    static const char *default_mfr_desc = "Northbound Networks";
++    static const char *default_hw_desc = "Zodiac GX (Open vSwitch)";
+     static const char *default_sw_desc = VERSION;
+     static const char *default_serial_desc = "None";
+     static const char *default_dp_desc = "None";
