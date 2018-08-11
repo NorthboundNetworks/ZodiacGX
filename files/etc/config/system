@@ -1,0 +1,25 @@
+
+config system
+	option ttylogin '0'
+	option log_size '64'
+	option urandom_seed '0'
+	option hostname 'ZodiacGX'
+	option zonename 'UTC'
+	option timezone 'GMT0'
+	option log_proto 'udp'
+	option conloglevel '8'
+	option cronloglevel '8'
+
+config timeserver 'ntp'
+	option enabled '1'
+	list server 'time.nist.gov'
+	list server 'pool.ntp.org'
+
+config led
+	option name 'Activity'
+	option sysfs 'zodiac-gx:green:activity'
+	option trigger 'netdev'
+	option mode 'tx rx'
+	option dev 'ovslan'
+	option default '0'
+

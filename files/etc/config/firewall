@@ -1,0 +1,17 @@
+
+config defaults
+	option syn_flood '1'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+
+config zone
+	option name 'lan'
+	option input 'ACCEPT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+	option network 'lan eth0_1 eth0_2 eth0_3 eth0_4 eth0_5'
+
+config include
+	option path '/etc/firewall.user'
+
