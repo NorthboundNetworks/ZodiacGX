@@ -6,8 +6,8 @@ For information on setting up your computer and installing the required tools to
 Clone the repository to your local computer
 In the root directory run "./scripts/feeds update -a" to get all the latest package definitions
 Run "./scripts/feeds install -a" to install symlinks of all of them into /package/feeds/.
-Copy OpenvSwitch patch "0099-manufacturer-desc.patch" to the directory /feeds/packages/net/openvswitch/patches/
-Remove the line "CONFIGURE_ARGS += --disable-ssl" from the Makefile in the directory /feeds/packages/net/openvswitch/
+Copy OpenvSwitch patch "0099-zodiac-gx.patch" to the directory /feeds/packages/net/openvswitch/patches/
+To enable SSL support remove the line "CONFIGURE_ARGS += --disable-ssl" from the Open vSwitch Makefile in the directory /feeds/packages/net/openvswitch/
 Copy the ZodiacGX_config file to .config
 Update build dependencies by running "make defconfig"
 
