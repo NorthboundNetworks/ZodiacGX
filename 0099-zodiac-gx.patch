@@ -6,7 +6,7 @@
                          &pp->supported, &pp->peer);
 -    pp->curr_speed = netdev_features_to_bps(pp->curr, 0) / 1000;
 -    pp->max_speed = netdev_features_to_bps(pp->supported, 0) / 1000;
-+    pp->curr = 2080;
++    pp->curr = 8224;	// OFPPF_1GB_FD + OFPPF_AUTONEG
 +    pp->curr_speed = netdev_features_to_bps(pp->curr, 1000000000) / 1000;
 +    pp->max_speed = netdev_features_to_bps(pp->supported, 1000000000) / 1000;
  

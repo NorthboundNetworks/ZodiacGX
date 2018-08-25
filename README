@@ -1,7 +1,7 @@
 Welcome to the Zodiac GX firmware source code.
 
 To build your own Zodiac GX firmware you will need to have access to a Linux, BSD or MacOSX system (case-sensitive filesystem required). Cygwin will not be supported because of the lack of case sensitiveness in the file system.
-For information on setting up your computer and installing the required tools to build an OpenWRT image please refer the OpenWRT website.
+For information on setting up your computer and installing the required tools to build an OpenWRT firmware image please refer to the OpenWRT website at https://openwrt.org
 
 Clone the repository to your local computer
 In the root directory run "./scripts/feeds update -a" to get all the latest package definitions
