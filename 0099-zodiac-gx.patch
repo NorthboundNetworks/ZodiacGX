@@ -1,0 +1,25 @@
+--- a/ofproto/ofproto.c	2016-02-28 03:59:31.000000000 +1100
++++ b/ofproto/ofproto.c	2018-08-24 11:48:33.000000000 +1000
+@@ -2325,8 +2325,9 @@ ofport_open(struct ofproto *ofproto,
+     pp->state = netdev_get_carrier(netdev) ? 0 : OFPUTIL_PS_LINK_DOWN;
+     netdev_get_features(netdev, &pp->curr, &pp->advertised,
+                         &pp->supported, &pp->peer);
+-    pp->curr_speed = netdev_features_to_bps(pp->curr, 0) / 1000;
+-    pp->max_speed = netdev_features_to_bps(pp->supported, 0) / 1000;
++    pp->curr = 8224;	// OFPPF_1GB_FD + OFPPF_AUTONEG
++    pp->curr_speed = netdev_features_to_bps(pp->curr, 1000000000) / 1000;
++    pp->max_speed = netdev_features_to_bps(pp->supported, 1000000000) / 1000;
+ 
+     return netdev;
+ }
+@@ -3508,8 +3509,8 @@ static enum ofperr
+ handle_desc_stats_request(struct ofconn *ofconn,
+                           const struct ofp_header *request)
+ {
+-    static const char *default_mfr_desc = "Nicira, Inc.";
+-    static const char *default_hw_desc = "Open vSwitch";
++    static const char *default_mfr_desc = "Northbound Networks";
++    static const char *default_hw_desc = "Zodiac GX (Open vSwitch)";
+     static const char *default_sw_desc = VERSION;
+     static const char *default_serial_desc = "None";
+     static const char *default_dp_desc = "None";
