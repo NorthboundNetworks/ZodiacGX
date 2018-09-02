@@ -1,9 +1,6 @@
 CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_zodiac-gx=y
-# CONFIG_DRIVER_11AC_SUPPORT is not set
-# CONFIG_DRIVER_11N_SUPPORT is not set
-# CONFIG_DRIVER_11W_SUPPORT is not set
 CONFIG_KERNEL_BUILD_DOMAIN="northboundnetworks.com"
 CONFIG_KERNEL_BUILD_USER="ZodiacGX"
 CONFIG_OPENSSL_WITH_DEPRECATED=y
@@ -11,26 +8,23 @@ CONFIG_OPENSSL_WITH_EC=y
 CONFIG_OPENSSL_WITH_NPN=y
 CONFIG_OPENSSL_WITH_PSK=y
 CONFIG_OPENSSL_WITH_SRP=y
+CONFIG_PACKAGE_coreutils=y
+CONFIG_PACKAGE_coreutils-sleep=y
 # CONFIG_PACKAGE_dnsmasq is not set
-# CONFIG_PACKAGE_iwinfo is not set
-# CONFIG_PACKAGE_kmod-cfg80211 is not set
+CONFIG_PACKAGE_iw=y
 CONFIG_PACKAGE_kmod-crypto-crc32c=y
 CONFIG_PACKAGE_kmod-crypto-hash=y
 CONFIG_PACKAGE_kmod-gre=y
 CONFIG_PACKAGE_kmod-iptunnel=y
 CONFIG_PACKAGE_kmod-lib-crc32c=y
-CONFIG_PACKAGE_kmod-llc=y
-# CONFIG_PACKAGE_kmod-mac80211 is not set
-# CONFIG_PACKAGE_kmod-mt76 is not set
-# CONFIG_PACKAGE_kmod-mt76-core is not set
-# CONFIG_PACKAGE_kmod-mt7603 is not set
-# CONFIG_PACKAGE_kmod-mt76x2 is not set
+CONFIG_PACKAGE_kmod-mpls=y
+CONFIG_PACKAGE_kmod-nf-nat6=y
 CONFIG_PACKAGE_kmod-openvswitch=y
-CONFIG_PACKAGE_kmod-stp=y
 CONFIG_PACKAGE_kmod-tun=y
 CONFIG_PACKAGE_kmod-udptunnel4=y
 CONFIG_PACKAGE_kmod-udptunnel6=y
 CONFIG_PACKAGE_kmod-vxlan=y
+CONFIG_PACKAGE_libiwinfo=y
 CONFIG_PACKAGE_libiwinfo-lua=y
 CONFIG_PACKAGE_liblua=y
 CONFIG_PACKAGE_libncurses=y
@@ -39,6 +33,7 @@ CONFIG_PACKAGE_libpcap=y
 CONFIG_PACKAGE_librt=y
 CONFIG_PACKAGE_libubus-lua=y
 CONFIG_PACKAGE_libuci-lua=y
+CONFIG_PACKAGE_libuuid=y
 CONFIG_PACKAGE_lua=y
 CONFIG_PACKAGE_luci=y
 CONFIG_PACKAGE_luci-app-firewall=y
@@ -54,12 +49,12 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-zodiacgx=y
 CONFIG_PACKAGE_nano=y
 CONFIG_PACKAGE_openvswitch=y
-CONFIG_PACKAGE_openvswitch-base=y
-CONFIG_PACKAGE_openvswitch-ovs-appctl=y
-CONFIG_PACKAGE_openvswitch-ovs-dpctl=y
-CONFIG_PACKAGE_openvswitch-ovs-ofctl=y
-CONFIG_PACKAGE_openvswitch-ovs-vsctl=y
-CONFIG_PACKAGE_openvswitch-ovsdb-client=y
+CONFIG_PACKAGE_openvswitch-common=y
+CONFIG_PACKAGE_openvswitch-libofproto=y
+CONFIG_PACKAGE_openvswitch-libopenvswitch=y
+CONFIG_PACKAGE_openvswitch-libovsdb=y
+CONFIG_PACKAGE_openvswitch-ovsdb=y
+CONFIG_PACKAGE_openvswitch-vswitchd=y
 # CONFIG_PACKAGE_opkg is not set
 CONFIG_PACKAGE_rpcd=y
 CONFIG_PACKAGE_sudo=y
@@ -67,5 +62,5 @@ CONFIG_PACKAGE_terminfo=y
 CONFIG_PACKAGE_uboot-envtools=y
 CONFIG_PACKAGE_uhttpd=y
 CONFIG_PACKAGE_uhttpd-mod-ubus=y
+CONFIG_PACKAGE_uuidgen=y
 # CONFIG_TARGET_ROOTFS_INITRAMFS is not set
-CONFIG_PACKAGE_iw=y
