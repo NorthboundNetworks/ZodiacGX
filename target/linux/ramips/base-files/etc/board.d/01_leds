@@ -546,6 +546,9 @@ youku-yk1)
 	set_usb_led "$boardname:blue:usb"
 	ucidef_set_led_switch "wan" "wan" "$boardname:blue:wan" "switch0" "0x10"
 	;;
+zodiac-gx)
+	ucidef_set_led_netdev "activity" "activity" "$board:green:activity" "eth0"
+	;;
 esac
 
 board_config_flush

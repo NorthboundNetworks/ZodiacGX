@@ -459,6 +459,14 @@ define Device/zbt-wg3526-32M
 endef
 TARGET_DEVICES += zbt-wg3526-32M
 
+define Device/zodiac-gx
+  DTS := ZODIAC-GX
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+  DEVICE_TITLE := Zodiac GX
+  DEVICE_PACKAGES := kmod-usb3 kmod-usb-ledtrig-usbport kmod-ata-core kmod-ata-ahci
+endef
+TARGET_DEVICES += zodiac-gx
+
 # FIXME: is this still needed?
 define Image/Prepare
 #define Build/Compile
