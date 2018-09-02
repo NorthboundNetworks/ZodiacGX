@@ -17,6 +17,7 @@ menu "Target Images"
 			default TARGET_INITRAMFS_COMPRESSION_LZMA if TARGET_ar71xx
 			default TARGET_INITRAMFS_COMPRESSION_LZMA if TARGET_ramips
 			default TARGET_INITRAMFS_COMPRESSION_LZMA if TARGET_apm821xx
+			default TARGET_INITRAMFS_COMPRESSION_LZMA if TARGET_mpc85xx
 			default TARGET_INITRAMFS_COMPRESSION_NONE
 			depends on TARGET_ROOTFS_INITRAMFS
 			help
@@ -50,6 +51,13 @@ menu "Target Images"
 			default ""
 			help
 			  Kernel uses specified external cpio as INITRAMFS_SOURCE.
+
+		config TARGET_INITRAMFS_FORCE
+                        bool "Force"
+                        depends on TARGET_ROOTFS_INITRAMFS
+                        default n
+                        help
+                          Ignore the initramfs passed by the bootloader.
 
 	comment "Root filesystem archives"
 
@@ -203,6 +211,11 @@ menu "Target Images"
 		default 38400 if TARGET_x86_generic
 		default 115200
 
+	config GRUB_FLOWCONTROL
+		bool "Use RTE/CTS on serial console"
+		depends on GRUB_SERIAL != ""
+		default n
+
 	config GRUB_BOOTOPTS
 		string "Extra kernel boot options"
 		depends on GRUB_IMAGES
@@ -237,7 +250,7 @@ menu "Target Images"
 
 	config TARGET_IMAGES_GZIP
 		bool "GZip images"
-		depends on TARGET_IMAGES_PAD || TARGET_ROOTFS_EXT4FS
+		depends on TARGET_IMAGES_PAD || TARGET_ROOTFS_EXT4FS || TARGET_x86
 		default y
 
 	comment "Image Options"

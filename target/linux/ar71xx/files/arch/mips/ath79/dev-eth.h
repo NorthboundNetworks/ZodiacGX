@@ -18,6 +18,7 @@ struct platform_device;
 
 extern unsigned char ath79_mac_base[] __initdata;
 void ath79_parse_ascii_mac(char *mac_str, u8 *mac);
+void ath79_extract_mac_reverse(u8 *ptr, u8 *out);
 void ath79_init_mac(unsigned char *dst, const unsigned char *src,
 		    int offset);
 void ath79_init_local_mac(unsigned char *dst, const unsigned char *src);
@@ -49,5 +50,6 @@ void ath79_setup_ar933x_phy4_switch(bool mac, bool mdio);
 void ath79_setup_ar934x_eth_cfg(u32 mask);
 void ath79_setup_ar934x_eth_rx_delay(unsigned int rxd, unsigned int rxdv);
 void ath79_setup_qca955x_eth_cfg(u32 mask);
+void ath79_setup_qca956x_eth_cfg(u32 mask);
 
 #endif /* _ATH79_DEV_ETH_H */
