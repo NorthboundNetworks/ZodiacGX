@@ -12,7 +12,8 @@ Update build dependencies by running "make defconfig"
 
 Add or remove applications if required using "make menuconfig"
 
-Simply running "make" will build your firmware.
+Simply running "make" will build your firmware. If you recieve an error while building unbound remove the "	--enable-tfo-client \" line from the CONFIGURE_ARGS list in it's Makefile located in /feeds/packages/net/unbound
+
 It will download all sources, build the cross-compile toolchain, the kernel and all choosen applications.
 When the compilation is complete the resulting fimrware will be called "openwrt-ramips-mt7621-zodiac-gx-squashfs-sysupgrade" and be in /bin/targets/ramips/mt7621 directory.
 
