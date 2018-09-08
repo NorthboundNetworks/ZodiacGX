@@ -16,7 +16,7 @@ find_release_info()
 	[ -z "$PRETTY_NAME" ] && [ -s /etc/openwrt_version ] && \
 		PRETTY_NAME="$(cat /etc/openwrt_version)"
 
-	echo "${PRETTY_NAME:-Unknown Lede release} @ $(cat /proc/sys/kernel/hostname)"
+	echo "${PRETTY_NAME:-Unknown OpenWrt release} @ $(cat /proc/sys/kernel/hostname)"
 }
 
 write_lldpd_conf()
@@ -89,9 +89,6 @@ start_service() {
 
 	# set auto respawn behavior
 	procd_set_param respawn
-	procd_append_param respawn 3600
-	procd_append_param respawn 5
-	procd_append_param respawn -1
 	procd_close_instance
 }
 

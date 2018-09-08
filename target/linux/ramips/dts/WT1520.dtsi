@@ -1,28 +1,34 @@
 #include "rt5350.dtsi"
 
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/input/input.h>
+
 / {
-	compatible = "NEXXWT1520", "ralink,rt5350-soc";
+	compatible = "nexx,wt1520", "ralink,rt5350-soc";
 
 	memory@0 {
 		device_type = "memory";
 		reg = <0x0 0x2000000>;
 	};
 
-	chosen {
-		bootargs = "console=ttyS1,57600";
-	};
-};
+	gpio-keys-polled {
+		compatible = "gpio-keys-polled";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		poll-interval = <20>;
 
-&uart {
-	pinctrl-names = "default";
-	pinctrl-0 = <&uartf_pins>;
-	status = "okay";
+		reset {
+			label = "reset";
+			gpios = <&gpio0 10 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+	};
 };
 
 &pinctrl {
 	state_default: pinctrl0 {
 		gpio {
-			ralink,group = "jtag";
+			ralink,group = "jtag", "uartf";
 			ralink,function = "gpio";
 		};
 	};
