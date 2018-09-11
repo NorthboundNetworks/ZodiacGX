@@ -81,7 +81,7 @@ $(eval $(call KernelPackage,fb))
 define KernelPackage/fbcon
   SUBMENU:=$(VIDEO_MENU)
   TITLE:=Framebuffer Console support
-  DEPENDS:=+kmod-fb
+  DEPENDS:=+kmod-fb @!LINUX_4_14
   KCONFIG:= \
 	CONFIG_FRAMEBUFFER_CONSOLE \
 	CONFIG_FRAMEBUFFER_CONSOLE_DETECT_PRIMARY=y \
@@ -186,40 +186,8 @@ define KernelPackage/drm
   SUBMENU:=$(VIDEO_MENU)
   TITLE:=Direct Rendering Manager (DRM) support
   HIDDEN:=1
-  DEPENDS:=+kmod-dma-buf
-  KCONFIG:=CONFIG_DRM \
-	CONFIG_DRM_FBDEV_EMULATION=n \
-	CONFIG_DRM_LOAD_EDID_FIRMWARE=n \
-	CONFIG_DRM_IMX=n \
-	CONFIG_DRM_PTN3460=n \
-	CONFIG_DRM_PS8622=n \
-	CONFIG_DRM_TDFX=n \
-	CONFIG_DRM_R128=n \
-	CONFIG_DRM_RADEON=n \
-	CONFIG_DRM_AMDGPU=n \
-	CONFIG_DRM_NOUVEAU=n \
-	CONFIG_DRM_MGA=n \
-	CONFIG_DRM_VIA=n \
-	CONFIG_DRM_SAVAGE=n \
-	CONFIG_DRM_VGEM=n \
-	CONFIG_DRM_EXYNOS=n \
-	CONFIG_DRM_VMWGFX=n \
-	CONFIG_DRM_UDL=n \
-	CONFIG_DRM_AST=n \
-	CONFIG_DRM_MGAG200=n \
-	CONFIG_DRM_CIRRUS_QEMU=n \
-	CONFIG_DRM_ARMADA=n \
-	CONFIG_DRM_TILCDC=n \
-	CONFIG_DRM_QXL=n \
-	CONFIG_DRM_BOCHS=n \
-	CONFIG_DRM_FSL_DCU=n \
-	CONFIG_DRM_STI=n \
-	CONFIG_DRM_NXP_PTN3460=n \
-	CONFIG_DRM_PARADE_PS8622=n \
-	CONFIG_DRM_I2C_ADV7511=n \
-	CONFIG_DRM_I2C_CH7006=n \
-	CONFIG_DRM_I2C_SIL164=n \
-	CONFIG_DRM_I2C_NXP_TDA998X=n
+  DEPENDS:=+kmod-dma-buf +kmod-i2c-core
+  KCONFIG:=CONFIG_DRM
   FILES:=$(LINUX_DIR)/drivers/gpu/drm/drm.ko
   AUTOLOAD:=$(call AutoLoad,05,drm)
 endef
@@ -236,6 +204,7 @@ define KernelPackage/drm-imx
   DEPENDS:=@TARGET_imx6 +kmod-drm +kmod-fb +kmod-fb-cfb-copyarea +kmod-fb-cfb-imgblt +kmod-fb-cfb-fillrect +kmod-fb-sys-fops
   KCONFIG:=CONFIG_DRM_IMX \
 	CONFIG_DRM_FBDEV_EMULATION=y \
+	CONFIG_DRM_FBDEV_OVERALLOC=100 \
 	CONFIG_IMX_IPUV3_CORE \
 	CONFIG_RESET_CONTROLLER=y \
 	CONFIG_DRM_IMX_IPUV3 \
@@ -255,7 +224,6 @@ define KernelPackage/drm-imx
   FILES:= \
 	$(LINUX_DIR)/drivers/gpu/drm/imx/imxdrm.ko \
 	$(LINUX_DIR)/drivers/gpu/ipu-v3/imx-ipu-v3.ko \
-	$(LINUX_DIR)/drivers/gpu/drm/imx/imx-ipuv3-crtc.ko \
 	$(LINUX_DIR)/drivers/video/fbdev/core/syscopyarea.ko \
 	$(LINUX_DIR)/drivers/video/fbdev/core/sysfillrect.ko \
 	$(LINUX_DIR)/drivers/video/fbdev/core/sysimgblt.ko \
@@ -274,12 +242,13 @@ define KernelPackage/drm-imx-hdmi
   TITLE:=Freescale i.MX HDMI DRM support
   DEPENDS:=+kmod-sound-core kmod-drm-imx
   KCONFIG:=CONFIG_DRM_IMX_HDMI \
-	CONFIG_DRM_DW_HDMI_AHB_AUDIO
+	CONFIG_DRM_DW_HDMI_AHB_AUDIO \
+	CONFIG_DRM_DW_HDMI_I2S_AUDIO
   FILES:= \
-	$(LINUX_DIR)/drivers/gpu/drm/bridge/dw_hdmi.ko \
-	$(LINUX_DIR)/drivers/gpu/drm/bridge/dw_hdmi-ahb-audio.ko \
+	$(LINUX_DIR)/drivers/gpu/drm/bridge/synopsys/dw-hdmi.ko \
+	$(LINUX_DIR)/drivers/gpu/drm/bridge/synopsys/dw-hdmi-ahb-audio.ko \
 	$(LINUX_DIR)/drivers/gpu/drm/imx/dw_hdmi-imx.ko
-  AUTOLOAD:=$(call AutoLoad,05,dw_hdmi dw_hdmi-ahb-audio.ko dw_hdmi-imx)
+  AUTOLOAD:=$(call AutoLoad,05,dw-hdmi dw-hdmi-ahb-audio.ko dw_hdmi-imx)
 endef
 
 define KernelPackage/drm-imx-hdmi/description
@@ -299,7 +268,9 @@ define KernelPackage/drm-imx-ldb
 	CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0=n \
 	CONFIG_DRM_PANEL_LG_LG4573=n \
 	CONFIG_DRM_PANEL_LD9040=n \
-	CONFIG_DRM_PANEL_S6E8AA0=n
+	CONFIG_DRM_PANEL_LVDS=n \
+	CONFIG_DRM_PANEL_S6E8AA0=n \
+	CONFIG_DRM_PANEL_SITRONIX_ST7789V=n
   FILES:=$(LINUX_DIR)/drivers/gpu/drm/imx/imx-ldb.ko \
 	$(LINUX_DIR)/drivers/gpu/drm/panel/panel-simple.ko
   AUTOLOAD:=$(call AutoLoad,05,imx-ldb)
